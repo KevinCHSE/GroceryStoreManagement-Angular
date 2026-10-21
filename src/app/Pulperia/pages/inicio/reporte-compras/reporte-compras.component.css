@@ -1,0 +1,127 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+
+}
+
+.contenido {
+  flex: 1;
+  padding: 1.5rem 2rem;
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.filtros {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+label {
+  font-size: 13px;
+  color: var(--gris-texto-suave);
+  display: block;
+  margin-bottom: 4px;
+}
+
+select,
+input[type='date'] {
+  padding: 8px 10px;
+  border: 0.5px solid var(--borde);
+  border-radius: 6px;
+}
+
+select {
+  width: 200px;
+}
+
+.boton-primario {
+  background: var(--azul-600);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.tarjeta-total {
+  background: #f5f4ef;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.tarjeta-total__etiqueta {
+  font-size: 13px;
+  color: var(--gris-texto-suave);
+  margin: 0 0 4px;
+}
+
+.tarjeta-total__valor {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  padding: 8px 4px;
+  font-weight: 400;
+  color: var(--gris-texto-suave);
+  border-bottom: 0.5px solid var(--borde);
+}
+
+td {
+  padding: 10px 4px;
+  border-bottom: 0.5px solid var(--borde);
+}
+
+.vacio {
+  color: var(--gris-texto-suave);
+  font-size: 14px;
+}
+
+.payment-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+ }
+.payment-section label { font-weight: 600; }
+.payment-section input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600; cursor: pointer; }
+.btn-primary { background: #059669; color: white; }
+.btn-primary:hover { background: #047857; }
+.btn-secondary { background: #ffffff; border: 1px solid #d1d5db; color: #374151; }
+.btn-secondary:hover { background: #f3f4f6; }
+
+.MessageError{
+  padding: 10px 20px;
+  font-size:20px;
+}
+

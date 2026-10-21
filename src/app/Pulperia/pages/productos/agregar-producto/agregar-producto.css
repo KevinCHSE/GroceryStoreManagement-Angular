@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+}
+
+/* ===== Fondo oscuro detrás del modal ===== */
+.modal-overlay {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Caja blanca del modal ===== */
+.modal-caja {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 24px 26px;
+  width: 340px;
+  max-width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Encabezado ===== */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.modal-cerrar {
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-cerrar:hover {
+  color: #4b5563;
+}
+
+/* ===== Formulario: contenedor general ===== */
+.form-producto {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cada campo, incluida la categoría, va en columna: label arriba, input abajo */
+.form-campo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-campo label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.form-campo input,
+.form-campo select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #111827;
+  background-color: #ffffff;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-campo select {
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 100px;
+}
+
+.form-campo input::placeholder {
+  color: #9ca3af;
+}
+
+.form-campo input:focus,
+.form-campo select:focus {
+  outline: none;
+  border-color: #1a56a0;
+  box-shadow: 0 0 0 3px rgba(26, 86, 160, 0.12);
+}
+
+/* Precio y stock van uno al lado del otro, misma altura y separación que el resto */
+.form-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.form-fila .form-campo {
+  margin-bottom: 0;
+}
+
+/* ===== Estado de error ===== */
+.form-campo input.ng-invalid.ng-touched,
+.form-campo select.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+.form-error {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
+
+/* ===== Botones ===== */
+.modal-acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-cancelar {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  color: #1f2937;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #f3f4f6;
+}
+
+.btn-guardar {
+  flex: 1;
+  background-color: #1a56a0;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-guardar:hover:not(:disabled) {
+  background-color: #164a89;
+}
+
+.btn-guardar:disabled {
+  background-color: #93b4d6;
+  cursor: not-allowed;
+}
+.campo-imagen {
+  --texto: #1f2328;
+  --texto-suave: #6b6f76;
+  --fondo-suave: #f4f3ee;
+  --borde: #d6d3c9;
+  --azul: #1a5ea8;
+  --azul-claro: #e8f0fa;
+  --error: #b3261e;
+  max-width: 28rem;
+}
+
+.zona-imagen {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.6rem 0.9rem;
+  border: 1.5px dashed var(--borde);
+  border-radius: 10px;
+  background: var(--fondo-suave);
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.zona-imagen:hover {
+  border-color: var(--azul);
+}
+
+/* Se activa con la clase "arrastrando" cuando una foto pasa por encima */
+.zona-imagen.arrastrando {
+  border-color: var(--azul);
+  background: var(--azul-claro);
+}
+
+.zona-imagen:focus-within {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
+
+/* El input sigue accesible con el teclado, pero no se ve */
+.entrada-oculta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.miniatura {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texto-suave);
+}
+
+.vista-previa {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.texto-imagen small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  color: var(--texto-suave);
+  opacity: 0.85;
+}
+
+.fila-imagen {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.boton-quitar {
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.boton-quitar:hover {
+  background: var(--fondo-suave);
+}
+
+.error-imagen {
+  margin: 0;
+  color: var(--error);
+  font-size: 0.85rem;
+}
