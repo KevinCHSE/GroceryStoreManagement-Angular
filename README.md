@@ -2,7 +2,7 @@
 
 Web client for managing a small grocery store: product catalog and stock, customers with store credit, sales and customer payments. Built for a real family grocery store. The interface is in Spanish.
 
-**Live demo:** [add link] · **Backend repo:** [grocery-store-management-spring](add link)
+**Live demo: https://grocery-store-management-angular.vercel.app/** · **Backend repo: https://github.com/KevinCHSE/GroceryStoreManagement-Spring** 
 
 > The backend runs on Render's free tier, so the first request after a period of inactivity can take up to a minute.
 
@@ -40,7 +40,7 @@ Web client for managing a small grocery store: product catalog and stock, custom
 **Requirements:** Node.js 22 or newer, npm, and the [backend](add link) running on `http://localhost:8080`.
 
 ```bash
-git clone https://github.com/KevinCHSE/grocery-store-management-angular.git
+git clone https://github.com/KevinCHSE/GroceryStoreManagement-Angular.git 
 cd grocery-store-management-angular
 npm install
 npm start
