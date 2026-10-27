@@ -39,7 +39,7 @@
                   <div class="foto-vacia">Sin imagen</div>
                 } @else {
                   <img
-                    [src]="serviceImage.getImage(p.id!)"
+                    [src]="serviceImage.getImage(p.id!)+'?v='+serviceImage.getVersion(p.id!)"
                     [alt]="p.name"
                     loading="lazy"
                     (error)="marcarSinImagen(p.id!)"

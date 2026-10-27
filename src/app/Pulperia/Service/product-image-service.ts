@@ -18,7 +18,11 @@ export class ProductImageService {
     return this.http.post<Image>(`${this.apiURL}/saveImage/${idProduct}/image`,form);
   }
 
-  getImage(idProduct:number, version?:number):string{
-    return `${this.apiURL}/${idProduct}/image` + (version ? `?v=${version}` : '');
+  getImage(idProduct:number,):string{
+    return `${this.apiURL}/${idProduct}/image`;
+  }
+
+  getVersion(idProduct:number):string{
+    return `${this.apiURL}/${idProduct}/ImageVersion`
   }
 }

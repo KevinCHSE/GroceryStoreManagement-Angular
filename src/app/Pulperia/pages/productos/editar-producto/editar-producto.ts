@@ -2,7 +2,7 @@ import { Component, inject, Signal, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { catchError, of, switchMap, throwError } from 'rxjs';
+import { catchError, map, of, switchMap, throwError } from 'rxjs';
 import { Products } from '../../../Models/Products';
 import { ProductService } from '../../../Service/product-service';
 import { ProductImageService } from '../../../Service/product-image-service';
@@ -28,6 +28,7 @@ export class EditarProducto {
   isActive=signal<boolean>(false)
   Image=signal<File|null>(null)
 
+
   cargando = signal<boolean>(true);
   errorMensaje = signal<string>('');
 
@@ -45,8 +46,10 @@ export class EditarProducto {
          this.price.set(product.price)
          this.categoria.set(product.type)
          this.isActive.set(product.active)
+         this.Image.set(null)
 
          this.cargando.set(false)
+
 
 
       },error:(err: any): void=>{
@@ -89,9 +92,9 @@ export class EditarProducto {
 
   actualizar():void{
 
-    if(!this.name() || !this.price() || !this.Image()){
+    if(!this.name() || !this.price()){
       this.cargando.set(false)
-      this.errorMensaje.set("Hay espacios sin rellenar o le falta la imagen")
+      this.errorMensaje.set("Hay espacios sin rellenar")
       return
     }
 
@@ -101,6 +104,7 @@ export class EditarProducto {
       stock:this.stock(),
       price:this.price(),
       type:this.categoria(),
+
       active:this.isActive(),
     }
 
@@ -109,27 +113,31 @@ export class EditarProducto {
     const newId:number= Number(this.id);
     this.ProductService.updateProduct(newId, product)
     .pipe(
-      switchMap(
-        saved=>file?this.imageService.saveImage(saved.id!,file)
-        .pipe(
-          catchError(err=>{
-            this.errorMensaje.set(`No se pudo subir la Imagen ${err}`)
-            return of(null)
-          })
-        )
-        :of(null)
-        )
+    switchMap(() =>
+      file
+        ? this.imageService.saveImage(newId, file).pipe(
+            map(() => true),
+            catchError(err => {
+              this.errorMensaje.set('El producto se actualizó, pero no se pudo subir la imagen');
+              return of(false);
+            })
+          )
+        : of(true)
     )
+  )
     .subscribe({
-      next:()=>{
-        this.cargando.set(false),
-        this.errorMensaje.set("")
-        this.router.navigate(['Pulperia/Products'])
+      next: (ok) => {
+        this.cargando.set(false);
+        if (ok) {
+          this.errorMensaje.set('');
+          this.router.navigate(['/Pulperia/Products']);
+        }
+        // si ok es false, nos quedamos para que el usuario vea el error
       },
-      error:(err)=>{
-        this.cargando.set(false),
-        this.errorMensaje.set("No se pudo actualizar los datos del producto")
-        console.log(err)
+      error: (err) => {
+        this.cargando.set(false);
+        this.errorMensaje.set('No se pudo actualizar los datos del producto');
+        console.log(err);
       }
     })
   }

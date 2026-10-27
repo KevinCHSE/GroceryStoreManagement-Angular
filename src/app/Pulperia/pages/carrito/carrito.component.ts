@@ -41,6 +41,7 @@ export class CarritoComponent{
   selectedPayment=signal<string>("")
 
   invoiceItem=signal<CartItem[]>([])
+  
   invoiceTotal = computed(() =>
   this.invoiceItem().reduce((sum, item) => sum + item.product.price * item.amount, 0)
 );
@@ -104,6 +105,7 @@ export class CarritoComponent{
     protected productosActivos = computed(() =>
       (this.getProducts.value() ?? []).filter(p => p.active)
     );
+
     protected sinImagen = signal<ReadonlySet<number>>(new Set());
 
     protected marcarSinImagen(id: number): void {

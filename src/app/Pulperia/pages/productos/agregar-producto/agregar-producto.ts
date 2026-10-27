@@ -108,7 +108,6 @@ export class AgregarProducto {
       error: (err) => {
         this.guardando.set(false);
         this.errorMensaje.set('No se pudo guardar el producto.');
-        console.error(err);
       }
     });
   }

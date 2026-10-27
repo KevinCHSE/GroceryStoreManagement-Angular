@@ -6,7 +6,7 @@
 
       </div>
 
-      <form class="form-producto" (submit)="$event.defaultPrevented;actualizar()">
+      <form class="form-producto" (submit)="$event.preventDefault();actualizar()">
 
         <div class="form-campo">
           <label for="nombre-producto">Nombre del producto</label>
@@ -32,7 +32,7 @@
 
         <div class="campo-imagen">
             <label class="zona-imagen" for="imagen">
-            <input id="imagen" class="entrada-oculta" type="file" accept="image/*" required (change)="onImageSelected($event)" #image/>
+            <input id="imagen" class="entrada-oculta" type="file" accept="image/*"  (change)="onImageSelected($event)" #image/>
 
             <span class="miniatura">
               <svg class="icono" viewBox="0 0 24 24" width="24" height="24" fill="none"
